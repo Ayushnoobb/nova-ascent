@@ -1,5 +1,17 @@
 # Nova Ascent
 
+## Deploy to Vercel
+
+The Vite configuration explicitly enables Nitro's `vercel` preset. A production
+build generates `.vercel/output` with static assets, an SSR function and routing.
+`vercel.json` selects TanStack Start, `npm run build`, and a frozen Bun install.
+
+In Vercel, use the repository root as Root Directory and remove any manually
+configured Output Directory override such as `dist` or `dist/client`. Use the
+TanStack Start framework preset and Node.js 24.x. Push the configuration changes
+and create a new deployment; redeploying an older commit will retain its old
+configuration. A static-only Vite deployment cannot serve this SSR application.
+
 ## Search and sharing metadata
 
 Metadata is centralized in `src/lib/seo.ts`. All content pages have unique
