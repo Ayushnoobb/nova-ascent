@@ -1,5 +1,24 @@
 # Nova Ascent
 
+## Search and sharing metadata
+
+Metadata is centralized in `src/lib/seo.ts`. All content pages have unique
+titles/descriptions, canonical URLs, Open Graph and Twitter preview metadata.
+The homepage includes Organization JSON-LD with the confirmed founders and
+LinkedIn page. Query parameters are excluded from canonical URLs.
+
+Production URLs default to `https://arcodestudeo.com`. Set `VITE_SITE_URL` at build
+time if this changes. Development uses `noindex, nofollow`; set
+`VITE_NOINDEX=true` when building staging/preview deployments. Normal production
+builds allow indexing. Unknown pages retain noindex metadata and HTTP 404 status.
+
+`/sitemap.xml` includes all 11 content pages, including individual training
+programs. `/robots.txt` advertises the sitemap in production and disallows
+crawling in development/staging. `/founders` permanently redirects to `/team`.
+After deployment, verify the domain in Google Search Console and submit
+`https://arcodestudeo.com/sitemap.xml`. No search-engine verification tokens or
+analytics identifiers are included without account-specific values.
+
 build a strong website for it company , that focuses on building saas product and training on it topics . 
 one of the major product is school management system , 
 
@@ -27,3 +46,19 @@ cd <repository-name>
 npm i
 npm run dev
 ```
+
+## Contact form
+
+The contact form posts to `https://formspree.io/f/xeaavjda` using AJAX.
+The recipient is configured in that Formspree form's dashboard; set it to
+`ayushwilltry@gmail.com`. The displayed company email is `info@arcodestudeo.com`.
+Name, email and message are required; company is optional.
+
+The form shows a sending indicator, blocks duplicate submissions, times out after
+20 seconds, and displays inline success/error feedback. Failed attempts retain
+entered values and offer a direct email link. A honeypot filters spam.
+Verify inbox delivery through a test submission and the Formspree dashboard.
+
+The site's figures describe its listed offering (1 product, 4 training tracks,
+6 service areas and 8–16-week programs), rather than unverified customer,
+country or graduate totals.
